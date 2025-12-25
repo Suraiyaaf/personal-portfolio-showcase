@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suraiya Akter Ferdous - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+ 
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00fff5;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: 0.1s;
+            mix-blend-mode: difference;
+        }
+ 
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .gradient-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 0, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 245, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(255, 0, 150, 0.3) 0%, transparent 50%);
+            animation: bgShift 15s ease infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #00fff5;
+            border-radius: 50%;
+            animation: particleFloat 10s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+ 
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00fff5, #7800ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00fff5, #7800ff);
+            transform: translateX(-50%);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #00fff5;
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+ 
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 100px 80px;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-text h3 {
+            font-size: 24px;
+            color: #00fff5;
+            font-weight: 400;
+            margin-bottom: 15px;
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .hero-text h1 {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #00fff5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInLeft 0.8s ease 0.2s both;
+        }
+
+        .hero-text h2 {
+            font-size: 48px;
+            font-weight: 600;
+            color: #7800ff;
+            margin-bottom: 25px;
+            animation: slideInLeft 0.8s ease 0.4s both;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            animation: slideInLeft 0.8s ease 0.6s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            animation: slideInLeft 0.8s ease 0.8s both;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00fff5, #7800ff);
+            color: #fff;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #7800ff, #00fff5);
+            transition: left 0.3s;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00fff5;
+            border: 2px solid #00fff5;
+        }
+
+        .btn-secondary:hover {
+            background: #00fff5;
+            color: #0a0a0a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 245, 0.4);
+        }
+ 
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideInRight 0.8s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .image-container {
+            position: relative;
+            width: 450px;
+            height: 450px;
+        }
+
+        .glow-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 255, 245, 0.3), rgba(120, 0, 255, 0.3));
+            animation: rotate 10s linear infinite;
+            filter: blur(40px);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-pic {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid rgba(0, 255, 245, 0.5);
+            box-shadow: 0 0 60px rgba(0, 255, 245, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+ 
+        .education {
+            padding: 100px 80px;
+        }
+
+        .education-timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .education-item {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 80px;
+            position: relative;
+            align-items: center;
+        }
+
+        .education-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .edu-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 255, 245, 0.3);
+            transition: all 0.4s;
+        }
+
+        .edu-content:hover {
+            transform: translateY(-10px);
+            border-color: #00fff5;
+            box-shadow: 0 25px 60px rgba(0, 255, 245, 0.3);
+        }
+
+        .edu-content h3 {
+            font-size: 28px;
+            color: #00fff5;
+            margin-bottom: 10px;
+        }
+
+        .edu-content h4 {
+            font-size: 20px;
+            color: #7800ff;
+            margin-bottom: 15px;
+        }
+
+        .edu-year {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(120, 0, 255, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .edu-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid rgba(0, 255, 245, 0.3);
+            transition: all 0.4s;
+        }
+
+        .edu-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+ 
+        .skills {
+            padding: 100px 80px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 70px;
+            background: linear-gradient(135deg, #00fff5, #7800ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, #00fff5, #7800ff);
+            border-radius: 2px;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .skill-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-10px);
+            border-color: #00fff5;
+            box-shadow: 0 20px 50px rgba(0, 255, 245, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .skill-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #00fff5;
+        }
+
+        .skill-level {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00fff5, #7800ff);
+            border-radius: 10px;
+            transition: width 1.5s ease;
+        }
+ 
+        .certificates {
+            padding: 100px 80px;
+        }
+
+        .cert-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .cert-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 25px;
+            border: 2px solid rgba(0, 255, 245, 0.3);
+            transition: all 0.4s;
+            text-align: center;
+        }
+
+        .cert-box:hover {
+            transform: scale(1.03);
+            border-color: #00fff5;
+            box-shadow: 0 30px 70px rgba(0, 255, 245, 0.3);
+        }
+
+        .cert-image {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cert-box h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #00fff5;
+        }
+
+        .cert-id {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(0, 255, 245, 0.2);
+            border-radius: 15px;
+            font-size: 13px;
+            color: #00fff5;
+        }
+
+        .contact {
+            padding: 100px 80px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .social-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 245, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .social-btn:hover {
+            background: linear-gradient(135deg, #00fff5, #7800ff);
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 1024px) {
+            .hero, .education-item { flex-direction: column; text-align: center; padding: 40px; }
+            .education-item:nth-child(even) { flex-direction: column; }
+            .image-container, .profile-pic { width: 300px; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+
+    <div class="background">
+        <div class="gradient-bg"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <nav>
+        <div class="logo">SURAYA</div>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h3>Hello, I'm</h3>
+            <h1>Suraya Akter Ferdous</h1>
+            <h2>I'm Student & Full Stack Developer</h2>
+            <p>I am a CSE student at ULAB with a keen interest in software and web development. Alongside my academic studies, I am currently pursuing a Full Stack Web Development course from Ostad to enhance my practical skills.
+I enjoy learning new technologies and working on projects that help me grow as a developer. My goal is to build efficient and user-friendly applications and continue improving my skills in the field of technology.</p>
+            <div class="hero-buttons">
+                <a href="#certificates" class="btn btn-primary"><span>View Work</span></a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-container">
+                <div class="glow-circle"></div>
+                <div class="profile-pic">
+                    <img src="images/1000033858 (1).jpg" alt="Suraya Akter Ferdous">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="education" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-timeline">
+            <div class="education-item">
+                <div class="edu-content">
+                    <span class="edu-year">2023 - Recent</span>
+                    <h3>University of Liberal Arts Bangladesh</h3>
+                    <h4>B.Sc in Computer Science & Engineering</h4>
+                    <p>Focused on core computer science principles, software engineering, and modern programming paradigms. Engaging in various technical projects and research.</p>
+                </div>
+                <div class="edu-image">
+                    <img src="images/uni.webp" alt="ULAB Campus">
+                </div>
+            </div>
+            <div class="education-item">
+                <div class="edu-content">
+                    <span class="edu-year">Higher Secondary</span>
+                    <h3>Shaheed Begum Sheikh Fazilatun Nessa Mujib Government College</h3>
+                    <h4>Hazaribagh, Dhaka</h4>
+                    <p>Completed higher secondary education with a strong focus on science and mathematics, laying the foundation for an engineering career.</p>
+                </div>
+                <div class="edu-image">
+                    <img src="images/collage.webp" alt="College Building">
+                </div>
+            </div>
+             <div class="edu-card" style="display: flex; gap: 40px; background: rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 30px; border: 2px solid rgba(0, 255, 245, 0.2); align-items: center; transition: 0.3s; margin-bottom: 60px;">
+    <div class="edu-info" style="flex: 1;">
+        <span style="background: #7800ff; padding: 5px 15px; border-radius: 20px; font-size: 14px; margin-bottom: 10px; display: inline-block; color: #fff;">Currently Enrolled</span>
+        <h3 style="font-size: 32px; color: #00fff5; margin-bottom: 10px;">Full Stack Web Development with MERN</h3>
+        <h4 style="font-size: 22px; color: #7800ff; margin-bottom: 15px;">Platform: Ostad</h4>
+        <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6;"> Currently learning MongoDB, Express.js, React, and Node.js from Ostad.
+             I have been performing well in the course and consistently delivering high-quality projects with strong results.</p>
+        
+        <div class="score-row" style="display: flex; gap: 15px; margin-top: 25px;">
+            <div class="score-item" style="text-align: center;">
+                <img src="images/Screenshot (21).png" alt="100% Score" style="width: 150px; border: 2px solid #00fff5; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,255,245,0.2);">
+                <p style="font-size: 12px; color: #00fff5; margin-top: 5px;">Perfect Score</p>
+            </div>
+            <div class="score-item" style="text-align: center;">
+                <img src="images/Screenshot (23).png" alt="Feedback" style="width: 150px; border: 2px solid #00fff5; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,255,245,0.2);">
+                <p style="font-size: 12px; color: #00fff5; margin-top: 5px;">Excellent Feedback</p>
+            </div>
+        </div>
+    </div>
+    <div class="edu-image" style="flex: 1; background: #fff; border-radius: 20px; padding: 20px; display: flex; align-items: center; justify-content: center; height: 350px;">
+        <img src="images/2024-03-20T04-26-32.799Z-ostad_logo_light@512x (2).png" alt="Ostad Logo" style="max-width: 80%; object-fit: contain;">
+    </div>
+</div>
+        </div>
+    </section>
+
+    <section class="skills" id="skills">
+        <h2 class="section-title">Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-box">
+                <span class="skill-icon">☕</span>
+                <h3>Java Development</h3>
+                <div class="skill-level"><div class="skill-progress" data-width="90"></div></div>
+            </div>
+            <div class="skill-box">
+                <span class="skill-icon">🐍</span>
+                <h3>Python</h3>
+                <div class="skill-level"><div class="skill-progress" data-width="85"></div></div>
+            </div>
+            <div class="skill-box">
+                <span class="skill-icon">⚙️</span>
+                <h3>C++ & DSA</h3>
+                <div class="skill-level"><div class="skill-progress" data-width="88"></div></div>
+            </div>
+            
+            <div class="skill-box">
+                <span class="skill-icon">🌐</span>
+                <h3>Web Development</h3>
+                <p>Modern responsive websites</p>
+                <div class="skill-level">
+                    <div class="skill-progress" data-width="92"></div>
+                </div>
+            </div>
+            <div class="skill-box">
+                <span class="skill-icon">⚛️</span>
+                <h3>HTML/CSS/JavaScript</h3>
+                <p>Frontend technologies</p>
+                <div class="skill-level">
+                    <div class="skill-progress" data-width="95"></div>
+                </div>
+            </div>
+            <div class="skill-box">
+                <span class="skill-icon">📊</span>
+                <h3>Problem Solving</h3>
+                <p>Algorithms & optimization</p>
+                <div class="skill-level">
+                    <div class="skill-progress" data-width="87"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="certificates" id="certificates">
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-container">
+            <div class="cert-box">
+                <img src="images/Screenshot (19).png" class="cert-image" alt="Java Certificate">
+                <h3>Web Development with Java</h3>
+                <span class="cert-id">Ostad - ID: C33418</span>
+            </div>
+            <div class="cert-box">
+                <img src="images/Screenshot (20).png" class="cert-image" alt="Python Certificate">
+                <h3>Web Development with Python</h3>
+                <span class="cert-id">Ostad - ID: C32411</span>
+            </div>
+            <div class="cert-box">
+                <img src="images/Screenshot (17).png" class="cert-image" alt="BongoDev Certificate">
+                <h3>Web Development Bootcamp</h3>
+                <span class="cert-id">bongoDev - Appreciation</span>
+            </div>
+            <div class="cert-box">
+                <img src="images/Screenshot (18).png" class="cert-image" alt="Cython Certificate">
+                <h3>Cython Codecraft (DSA)</h3>
+                <span class="cert-id">bongoDev - Achievement</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="social-links">
+            <div class="social-btn">🐙</div>
+            <div class="social-btn">💼</div>
+            <div class="social-btn">✉️</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Suraya Akter Ferdous. Student & Developed with ❤️</p>
+    </footer>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+ 
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particlesContainer.appendChild(particle);
+        }
+ 
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.skill-progress');
+                    progressBars.forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width') + '%';
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.skills-container').forEach(section => skillsObserver.observe(section));
+    </script>
+</body>
+</html>
